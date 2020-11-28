@@ -17,3 +17,4 @@ See in the [Arduino folder](./arduino) for code examples
 ## Connections
 
 ### Links
+- [more pictures of KeyBoh](https://photos.app.goo.gl/CL2jDvoLArWxuAqx8)
