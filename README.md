@@ -1,6 +1,6 @@
 # KeyBoh
 
-![image](./media/keyboh.jpg)
+![image](./media/keyboh_16_9.jpg)
 
 KeyBoh is an Arduino Leonardo shield for making customizable USB keyboards. We love to use the [NicoHood HID Project library](https://github.com/NicoHood/HID) for interfacing the whole thing to a Computer.
 
