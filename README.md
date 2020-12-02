@@ -21,8 +21,15 @@ We're currently working to a multi-predefined configurable keyset for various ap
 
 ## Can I use keyboh with other boards?
 Keyboh is designed for the Arduino Leonardo using his USB features for making USB devices you can use on the computer.
-You can use Keyboh on the Arduino UNO if you want to control remote devices through the UART: you can connect an external device simply connecting the UART using wires or you can attach a Bluetooth or an XBee module, or an ESP8266 but be always aware of the voltage levels!. There is the possibility to have a voltage divider only on the Arduino RX but connecting an ESP8266 requires a voltage divider on the TX.
-Since the Leonardo has separate SDA and SCL lines while the UNO has SDA and SCL shared with A4 and A5, using the shield on the UNO will make not available I2C lines, or you may not use the joystick (that uses A4 and A5) freeing those two pins.  
+
+### Keyboh on Arduino UNO
+Since the Leonardo has separate SDA and SCL lines while the UNO has SDA and SCL shared with A4 and A5, using the shield on the UNO will make not available I2C lines, or you may not use the joystick (that uses A4 and A5) freeing those two pins for using them for I2C.  
+  
+You can use Keyboh on the Arduino UNO if you want to control remote devices through the UART: you can connect an external device simply connecting the UART using wires or you can attach a Bluetooth or an XBee module, or an ESP8266 but be always aware of the voltage levels! There is the possibility to have a voltage divider only on the Arduino RX but connecting an ESP8266 requires a voltage divider on the TX.  
+
+You can use Keyboh on the Arduino UNO also for USB communication using the [HoodLoader by NicoHood](https://github.com/NicoHood/HoodLoader2). This project is made for reprogramming the 16U2, used on the UNO as serial/USB bridge, and use it for USB custom purposes. We've still not used that feature so please read the documentation of this library.
+
+### Keyboard on other boards
 You can use the shield on other development boards connecting wires on pads: the silkscreen will help a lot.  
 You can also saw off the PCB part with encoder and joystick: a part of soldering pads will be anyway available for reconnecting the two separate pcbs pads or for connecting them through wires.
 
@@ -38,6 +45,6 @@ Those links can be useful since people make also questions commenting on social 
 - [Arduino on FB](https://www.facebook.com/official.arduino/posts/5567229216636685)
 - [PCBWay on IG](https://www.instagram.com/p/CINa9Nnra6t/)
 - [PCBWay on TW](https://twitter.com/PCBWayOfficial/status/1333344888537026561)
-- [microchip on IG](https://www.instagram.com/p/CIRuX1qnB_U/)
+- [Microchip on IG](https://www.instagram.com/p/CIRuX1qnB_U/)
 - [Microchip on TW](https://twitter.com/MicrochipMakes/status/1333442492117737475)
 - [Microchip on FB](https://www.facebook.com/MicrochipMakes/posts/3820599841292022)
