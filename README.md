@@ -48,3 +48,4 @@ Those links can be useful since people make also questions commenting on social 
 - [Microchip on IG](https://www.instagram.com/p/CIRuX1qnB_U/)
 - [Microchip on TW](https://twitter.com/MicrochipMakes/status/1333442492117737475)
 - [Microchip on FB](https://www.facebook.com/MicrochipMakes/posts/3820599841292022)
+- [Hackster](https://www.hackster.io/news/keyboh-is-an-open-source-arduino-leonardo-shield-for-making-custom-usb-keyboards-208a930cc3f5)
