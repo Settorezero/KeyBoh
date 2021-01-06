@@ -13,6 +13,8 @@ In the [STL folder](./stl) are located the two panels you can 3Dprint by yoursel
 ## Code examples
 See in the [Arduino folder](./arduino) for code examples. We're currently working to a multi-predefined configurable keyset for various applications, so stay tuned.  
 
+In the [keys.txt](./docs/keys.txt) document are reported the names for the keys of the keyboard as used by NicoHood library
+
 ## Connection table
 To do. In the meanwhile look at schematic in the [docs folder](./docs)
 
