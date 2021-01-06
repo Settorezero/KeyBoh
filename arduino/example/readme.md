@@ -1,6 +1,6 @@
-### Simple Test
+### Example
 
-This sketch is used for example. You can use it as skeleton for your simple projects.  
+You can use this sketch as skeleton for your simple projects.  
 
 Keyboh Configuration:
 - Buttons from 1 to 19 not used

@@ -1,7 +1,7 @@
 ## KeyBoh Firmwares
 
-[example](./example)
+[Example](./example)  
 Thumbstick and encoder used as mouse functions
 
-[keytest](./keytest)
+[Keytest](./keytest)  
 Output buttons, encoder and thumbstick on serial port
