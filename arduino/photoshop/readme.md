@@ -7,3 +7,4 @@ Keyboh Configuration:
 - Encoder CW: Zoom IN
 - Encoder CCW: Zoom OUT
 - Encoder Button: Zoom Fit
+- Thumbstick: Panning

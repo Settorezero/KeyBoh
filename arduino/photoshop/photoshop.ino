@@ -8,6 +8,7 @@
  * Encoder CW: Zoom IN
  * Encoder CCW: Zoom OUT
  * Encoder Button: Zoom Fit
+ * Thumbstick: Panning
  */
 
 #include "HID-Project.h" // HID-Project library by Nico-Hood
@@ -277,11 +278,39 @@ void do_thumbstick_analog_stuff(uint16_t x, uint16_t y)
 
   // we'll use the analog joystick as a digital joystick
   // so I set a deadband and I'll check only the movement direction, not the movement amount
-  if (x>600) dx=-1;
-  else if (x<400) dx=1;
+  if (x>600) dx=-1; // move left 
+  else if (x<400) dx=1; // move right
+  if (y>600) dy=-1; // move up
+  else if (y<400) dy=1; // move down
 
-  if (y>600) dy=-1;
-  else if (y<400) dy=1;
-
-  Mouse.move(dx,dy,0); //x, y, scroll => no scroll in this case
-  }
+  if (dx==-1) // left
+    {    
+    Keyboard.press(KEY_LEFT_CTRL);
+    Keyboard.press(KEY_LEFT_SHIFT);
+    Keyboard.press(KEY_PAGE_UP);
+    delay(100);
+    Keyboard.releaseAll();   
+    }
+  else if (dx==1) // right
+    {    
+    Keyboard.press(KEY_LEFT_CTRL);
+    Keyboard.press(KEY_LEFT_SHIFT);
+    Keyboard.press(KEY_PAGE_DOWN);
+    delay(100);
+    Keyboard.releaseAll();   
+    }      
+ if (dy==-1) // up
+    {    
+    Keyboard.press(KEY_LEFT_SHIFT);
+    Keyboard.press(KEY_PAGE_UP);
+    delay(100);
+    Keyboard.releaseAll();   
+    }
+  else if (dy==1) // down
+    {    
+    Keyboard.press(KEY_LEFT_SHIFT);
+    Keyboard.press(KEY_PAGE_DOWN);
+    delay(100);
+    Keyboard.releaseAll();   
+    }       
+   }
