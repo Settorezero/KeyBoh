@@ -1,0 +1,7 @@
+Thumbs.db
+
+#VSCode
+.vscode
+
+#Arduino-CLI
+build
