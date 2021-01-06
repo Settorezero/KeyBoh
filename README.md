@@ -8,7 +8,7 @@ KeyBoh is an Arduino Leonardo shield for making customizable USB keyboards. We l
 Making the PCB on PCBWay will support our work! You need to subscribe to PCBWay first: you can do it using [this invite link](https://www.pcbway.com/setinvite.aspx?inviteid=355653&from=settorezero2020). Then you can let you make the [PCB on PCBWay using from the shared project page](https://www.pcbway.com/project/shareproject/KeyBoh_Shield.html)
 
 ## KeyBoh enclosure
-In the [STL folder](./stl) are located the two panels you can 3Dprint by yourself. Then you can assemble the Keyboh as showed in the pictures using 4 24mm F/F  and 4 M/F 6mm hex spacers + 12 M3 6mm screws and 4 3M bolts.
+In the [STL folder](./stl) are located the two panels you can 3Dprint by yourself. Then you can assemble the Keyboh as showed in the pictures using 4x 24mm F/F  and 4x M/F 6mm hex spacers + 12x M3 6mm screws and 4 3M bolts.
 
 ## Code examples
 See in the [Arduino folder](./arduino) for code examples. We're currently working to a multi-predefined configurable keyset for various applications, so stay tuned.  
@@ -34,18 +34,18 @@ You can also saw off the PCB part with encoder and joystick: a part of soldering
 Since keymatrix is implemented without protection diodes on pushbuttons, is no safe press more than 1 button on the same row at a time: this bring to a momentary short-circuit since 2 or more columns are connected together. Usually this is not a big problem since the duration of the short is very small due to column scan, but is better not doing this. In the next revision we'll add the protection diodes.
 
 ## Improvements
-You can solder 2 small 10pF ceramic capacitors at place of R3 and R4 for improving the encoder response.
+You can solder 2 small 10pF ceramic capacitors at place of `R3` and `R4` for improving the encoder response.
 
 ## Remarks for future PCB rev1
 - Add protection diodes on keymatrix switches
-- Add capacitor footprints capacitor for input filtering on encoder, joystick and keymatrix
+- Add capacitor footprints for input filtering on encoder, joystick and keymatrix
 - Use the Arduino micro instead of Leonardo (more compact) ?
 
 ## Links
 - [more pictures of KeyBoh](https://photos.app.goo.gl/CL2jDvoLArWxuAqx8)
 
 ## Sharings
-Since we love when others share our projects, here are linked companies who shared the project.  
+Since we love when others share our projects, here are linked pages who shared the project.  
 Those links can be useful since people make also questions commenting on social posts and we try to give answers directly.
 
 - [Arduino on IG](https://www.instagram.com/p/CIPJXs_j-tg/)
