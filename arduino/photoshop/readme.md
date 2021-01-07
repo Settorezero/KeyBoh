@@ -5,43 +5,43 @@ You can use this sketch for Photoshop. I've put my favourite commands, you can c
 #### Configuration
 
 ENCODER
-- Clockwise Rotation: Zoom IN (CTRL +)
-- Counter-Clockwise Rotation: Zoom OUT (CTRL -)
-- Button: Alternate between Zoom Fit (CTRL 0) / Zoom 100% (CTRL 1)
->  those Identical Zoom commands are used also in a lot of other programs such us the web browsers
+- <kbd>Clockwise Rotation</kbd>: Zoom IN (CTRL +)
+- <kbd>Counter-Clockwise Rotation</kbd>: Zoom OUT (CTRL -)
+- <kbd>Button</kbd>: Alternate between Zoom Fit (CTRL 0) / Zoom 100% (CTRL 1)
+>  These same commands are used also in a lot of other programs such as web browsers
 
-THUMBSTICK
-- X axis: PAN Left/Right (SHIFT CTRL PGUP/SHIFT CTRL PGDN)
-- Y axis: PAN up/down (SHIFT PGUP/SHIFT PGDN)
-- Button: Change screen Mode (toggle fullscreen) (F)
+THUMBSTICK 
+- <kbd>X axis</kbd>: PAN Left/Right (SHIFT CTRL PGUP / SHIFT CTRL PGDN)
+- <kbd>Y axis</kbd>: PAN up/down (SHIFT PGUP/SHIFT PGDN)
+- <kbd>Button: Change screen Mode (toggle fullscreen) (F)
 
 ROW 1
-- Button 1: Save As (CTRL SHIFT S)
-- Button 2: Undo (CTRL ALT Z)
-- Button 3: Show the INFO window (F8) (useful because give the pointer coordinates)
-- Button 4: Resize (CTRL ALT I)
-- Button 5: Change Canvas size (CTRL ALT C)
+- <kbd>Button 1</kbd>: Save As (CTRL SHIFT S)
+- <kbd>Button 2</kbd>: Undo (CTRL ALT Z)
+- <kbd>Button 3</kbd>: Show the INFO window (F8) (useful because give the pointer coordinates)
+- <kbd>Button 4</kbd>: Resize (CTRL ALT I)
+- <kbd>Button 5</kbd>: Change Canvas size (CTRL ALT C)
 
 ROW 2
-- Button 6: Alternate between Normal and Precision CrossHair (CAPS/LOCK)
-- Button 7: Pointer/move (V)
-- Button 8: Switch Between Rapid Selection/Magic Wand (SHIFT W)
-- Button 9: Rectangular Select (M)
-- Button 10: Switch Between Lasso types (SHIFT L)
+- <kbd>Button 6</kbd>: Alternate between Normal and Precision CrossHair (CAPS/LOCK)
+- <kbd>Button 7</kbd>: Pointer/move (V)
+- <kbd>Button 8</kbd>: Switch Between Rapid Selection/Magic Wand (SHIFT W)
+- <kbd>Button 9</kbd>: Rectangular Select (M)
+- <kbd>Button 10</kbd>: Switch Between Lasso types (SHIFT L)
 
 ROW 3
-- Button 11: Crop (C)
-- Button 12: Eraser (e)
-- Button 13: Switch Between Brush/Pencil/Color change/Mix Color (SHIFT B)
-- Button 14: Horizontal Text (t)
-- Button 15: Switch Background and Foreground colors (x)
+- <kbd>Button 11</kbd>: Crop (C)
+- <kbd>Button 12</kbd>: Eraser (E)
+- <kbd>Button 13</kbd>: Switch Between Brush/Pencil/Color change/Mix Color (SHIFT B)
+- <kbd>Button 14</kbd>: Horizontal Text (T)
+- <kbd>Button 15</kbd>: Switch Background and Foreground colors (X)
 
 ROW 4
-- Button 16: Invert (CTRL I)
-- Button 17: Black and White (CTRL ALT SHIFT B)
-- Button 18: Color balance (CTRL B)
-- Button 19: Brush window (F5)
-- Button 20: Show/Hide Grid (CTRL ,)
+- <kbd>Button 16</kbd>: Invert (CTRL I)
+- <kbd>Button 17</kbd>: Black and White (CTRL ALT SHIFT B)
+- <kbd>Button 18</kbd>: Color balance (CTRL B)
+- <kbd>Button 19</kbd>: Brush window (F5)
+- <kbd>Button 20</kbd>: Show/Hide Grid (CTRL ,)
 
 ### Notes
 - Removing the comment at row `#define MAC` will make the program use the Mac key <kbd>⌘</kbd> instead of the Windows/Linux <kbd>LEFT CTRL</kbd> where CTRL or ⌘ are required. I don't have a MAC so those functions are untested for the MAC.
