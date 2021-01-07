@@ -8,6 +8,7 @@ ENCODER
 - Clockwise Rotation: Zoom IN (CTRL +)
 - Counter-Clockwise Rotation: Zoom OUT (CTRL -)
 - Button: Alternate between Zoom Fit (CTRL 0) / Zoom 100% (CTRL 1)
+>  those Identical Zoom commands are used also in a lot of other programs such us the web browsers
 
 THUMBSTICK
 - X axis: PAN Left/Right (SHIFT CTRL PGUP/SHIFT CTRL PGDN)

@@ -47,6 +47,8 @@ Example: you write some wrong instructions so the keyboard cycles some keys inde
 
 Always remember to put a `Keyboard.releaseALL()` or `Keyboard.relese([KEY])` after `Keyboard.press` instructions or the keys will remain pressed forever causing a lot of problems!
 
+Another problem can be board not recognized from Arduino IDE even if the board is working and the selected serial port is right. In this case try to disconnect and reconnect the USB cable or pressing the Leonardo <kbd>reset</kbd> button after you've pressed the IDE button for the sketch upload.
+
 ## Notes for an ipothetical PCB revision
 - Add protection diodes on keymatrix switches
 - Add capacitor footprints for input filtering on encoder, joystick and keymatrix
