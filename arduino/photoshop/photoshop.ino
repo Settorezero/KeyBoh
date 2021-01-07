@@ -57,9 +57,9 @@ void setup()
   
   // HID peripherals initialization
   Keyboard.begin();
-  Mouse.begin();
-  Consumer.begin(); // used for multimedia buttons
-  Gamepad.begin();
+  //Mouse.begin();
+  //Consumer.begin(); // used for multimedia buttons
+  //Gamepad.begin();
   }
 
 void loop()
@@ -180,58 +180,88 @@ void do_keypad_stuff(uint8_t pb)
   switch (pb)
     {
     case 1:
-      Keyboard.press(KEY_F8); // Show the INFO window
+      // Save As
+      Keyboard.press(CONTROL); 
+      Keyboard.press(KEY_LEFT_SHIFT);
+      Keyboard.press('s'); 
       break;
 
     case 2:
-      Keyboard.press(KEY_CAPS_LOCK); // Crosshair
+      // Undo
+      Keyboard.press(CONTROL); 
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.press('z'); 
       break;
 
     case 3:
+      Keyboard.press(KEY_F8); // Show the INFO window
+      break;
+
+    case 4:
       // resize image
       Keyboard.press(CONTROL); 
       Keyboard.press(KEY_LEFT_ALT);
       Keyboard.press('i'); 
       break;
 
-    case 4:
+    case 5:
       // change cavas size
       Keyboard.press(CONTROL); 
       Keyboard.press(KEY_LEFT_ALT); 
       Keyboard.press('c'); 
       break;
 
-    case 5:
-      break;
-
     case 6:
+      // Crosshair
+      Keyboard.press(KEY_CAPS_LOCK); 
       break;
 
     case 7:
+      // Pointer/Move
+      Keyboard.press('v'); 
       break;
 
     case 8:
+      // Switch Between Rapid Selection/Magic Wand
+      Keyboard.press(KEY_LEFT_SHIFT);
+      Keyboard.press('w');
       break;
 
     case 9:
+      // Rectangular select
+      Keyboard.press('m');
       break;
 
     case 10:
+      // Switch between Lasso types
+      Keyboard.press(KEY_LEFT_SHIFT);
+      Keyboard.press('l');
       break;
 
     case 11:
+      // Crop
+      Keyboard.press('c');
       break;
 
     case 12:
+      // Eraser
+      Keyboard.press('e');
       break;
 
     case 13:
+      // Switch Between Brush/Pencil/Color change/Mix Color
+      Keyboard.press(KEY_LEFT_SHIFT);
+      Keyboard.press('b');
       break;
 
     case 14:
+      // Horizontal Text
+      Keyboard.press('t');
       break;
 
     case 15:
+      //Switch Background and Foreground colors
+      Keyboard.press('x');
       break;
 
     case 16:
@@ -255,9 +285,14 @@ void do_keypad_stuff(uint8_t pb)
       break;
 
     case 19:
+      // Brush Window
+      Keyboard.press(KEY_F5); 
       break;
 
     case 20:
+      // Show/Hide Grid
+      Keyboard.press(CONTROL);
+      Keyboard.press(',');
       break;
 
     default:
@@ -290,7 +325,10 @@ void do_encoder_button_stuff(void)
 // click on thumbstick button
 void do_thumbstick_button_stuff(void)
   {
-  
+  // toggle fullscreen
+  Keyboard.press('f');
+  delay(50);
+  Keyboard.releaseAll(); 
   }
 
 // movement of thumbstick axis
