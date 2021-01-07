@@ -5,13 +5,11 @@
  * https://www.settorezero.com
  *
  * Photoshop
- * Encoder CW: Zoom IN
- * Encoder CCW: Zoom OUT
- * Encoder Button: Zoom Fit
- * Thumbstick: Panning
+ * See readme for keyboh configuration
  */
 
 #include "HID-Project.h" // HID-Project library by Nico-Hood
+//#define MAC // uncomment this if you're using a MAC
 
 int row[]={A0,A1,A2,A3};    // matrix keypad - rows 
 int col[]={9,10,11,12,13};  // matrix keypad - columns
@@ -26,7 +24,13 @@ int col[]={9,10,11,12,13};  // matrix keypad - columns
 #define STICK_X   A5
 #define STICK_Y   A4
 
-uint8_t mouse_movement_delay=20; // ms, the analog thumbstick will be checked every this value ms givind mouse pointer some delay
+#ifdef MAC
+#define CONTROL KEY_LEFT_GUI
+#else
+#define CONTROL KEY_LEFT_CTRL
+#endif
+
+bool zoomfit=true;
 
 void setup()
   {
@@ -118,14 +122,8 @@ void loop()
    // check analog thumbstick axis
    int16_t x=analogRead(STICK_X);
    int16_t y=analogRead(STICK_Y);
+   do_thumbstick_analog_stuff(x,y);
    
-   if (last_T>millis()) last_T=millis(); // millis() rollover
-
-   if (millis()-last_T>mouse_movement_delay) 
-    {
-    do_thumbstick_analog_stuff(x,y);
-    last_T=millis();
-    }
    } // \loop
 
 // encoder interrupt
@@ -144,8 +142,10 @@ void encoderTick()
       {
       if (m==1) // the movement is still clockwise?
         {
-        Keyboard.press(KEY_LEFT_CTRL);
-        Keyboard.press(KEYPAD_ADD); 
+        // zoom in
+        zoomfit=true; // reset encoder click behaviour
+        Keyboard.press(CONTROL); // left control (win,nix) or left cmd (mac)
+        Keyboard.press(KEYPAD_ADD); // + on numeric keypad
         delay(100);
         Keyboard.releaseAll();      
         }
@@ -160,7 +160,9 @@ void encoderTick()
       {
       if (m==-1)
         {
-        Keyboard.press(KEY_LEFT_CTRL);
+        // zoom out
+        zoomfit=true; // reset encoder click behaviour
+        Keyboard.press(CONTROL); // left control (win,nix) or left cmd (mac)
         Keyboard.press(KEYPAD_SUBTRACT);
         delay(100);
         Keyboard.releaseAll();      
@@ -178,15 +180,25 @@ void do_keypad_stuff(uint8_t pb)
   switch (pb)
     {
     case 1:
-        break;
+      Keyboard.press(KEY_F8); // Show the INFO window
+      break;
 
     case 2:
+      Keyboard.press(KEY_CAPS_LOCK); // Crosshair
       break;
 
     case 3:
+      // resize image
+      Keyboard.press(CONTROL); 
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.press('i'); 
       break;
 
     case 4:
+      // change cavas size
+      Keyboard.press(CONTROL); 
+      Keyboard.press(KEY_LEFT_ALT); 
+      Keyboard.press('c'); 
       break;
 
     case 5:
@@ -223,51 +235,62 @@ void do_keypad_stuff(uint8_t pb)
       break;
 
     case 16:
+      // invert image
+      Keyboard.press(CONTROL); 
+      Keyboard.press('i'); 
       break;
 
     case 17:
+      // Black and White
+      Keyboard.press(CONTROL); 
+      Keyboard.press(KEY_LEFT_ALT); 
+      Keyboard.press(KEY_LEFT_SHIFT); 
+      Keyboard.press('b'); 
       break;
 
     case 18:
+      // Color Balance
+      Keyboard.press(CONTROL); 
+      Keyboard.press('b'); 
       break;
 
     case 19:
       break;
 
     case 20:
-      // button 20 will switch between 2 mouse delays (fast/slow)
-	  if (mouse_movement_delay) 
-        {
-        mouse_movement_delay=0;
-        return;
-        }
-      else 
-        {
-        mouse_movement_delay=20;
-        return;
-        }
       break;
 
     default:
        return;
       break;
     }
+
+  delay(50);
+  Keyboard.releaseAll();
   return;
   }
 
 // click on encoder button
 void do_encoder_button_stuff(void)
   {
-  Keyboard.press(KEY_LEFT_CTRL);
-  Keyboard.press('0');
-  delay(100);
+  Keyboard.press(CONTROL); // left control (win,nix) or left cmd (mac)
+  if (zoomfit)
+    {
+    Keyboard.press('0'); // fit
+    }
+  else
+    {
+    Keyboard.press('1'); // 100%  
+    }
+  zoomfit^=1; // invert
+  delay(50);
   Keyboard.releaseAll();
   }
 
 // click on thumbstick button
 void do_thumbstick_button_stuff(void)
   {
-  Mouse.click(MOUSE_LEFT); // mouse left click
+  
   }
 
 // movement of thumbstick axis
@@ -278,39 +301,39 @@ void do_thumbstick_analog_stuff(uint16_t x, uint16_t y)
 
   // we'll use the analog joystick as a digital joystick
   // so I set a deadband and I'll check only the movement direction, not the movement amount
-  if (x>600) dx=-1; // move left 
-  else if (x<400) dx=1; // move right
-  if (y>600) dy=-1; // move up
-  else if (y<400) dy=1; // move down
+  if (x>620) dx=-1; // move left 
+  else if (x<380) dx=1; // move right
+  if (y>620) dy=-1; // move up
+  else if (y<380) dy=1; // move down
 
   if (dx==-1) // left
     {    
-    Keyboard.press(KEY_LEFT_CTRL);
+    Keyboard.press(CONTROL); // left control (win,nix) or left cmd (mac)
     Keyboard.press(KEY_LEFT_SHIFT);
     Keyboard.press(KEY_PAGE_UP);
-    delay(100);
+    delay(30);
     Keyboard.releaseAll();   
     }
   else if (dx==1) // right
     {    
-    Keyboard.press(KEY_LEFT_CTRL);
+    Keyboard.press(CONTROL); // left control (win,nix) or left cmd (mac)
     Keyboard.press(KEY_LEFT_SHIFT);
     Keyboard.press(KEY_PAGE_DOWN);
-    delay(100);
+    delay(30);
     Keyboard.releaseAll();   
     }      
  if (dy==-1) // up
     {    
     Keyboard.press(KEY_LEFT_SHIFT);
     Keyboard.press(KEY_PAGE_UP);
-    delay(100);
+    delay(30);
     Keyboard.releaseAll();   
     }
   else if (dy==1) // down
     {    
     Keyboard.press(KEY_LEFT_SHIFT);
     Keyboard.press(KEY_PAGE_DOWN);
-    delay(100);
+    delay(30);
     Keyboard.releaseAll();   
     }       
    }

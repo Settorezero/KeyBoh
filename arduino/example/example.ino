@@ -270,11 +270,10 @@ void do_thumbstick_analog_stuff(uint16_t x, uint16_t y)
 
   // we'll use the analog joystick as a digital joystick
   // so I set a deadband and I'll check only the movement direction, not the movement amount
-  if (x>600) dx=-1;
-  else if (x<400) dx=1;
-
-  if (y>600) dy=-1;
-  else if (y<400) dy=1;
-
+  if (x>600) dx=-1; // move left
+  else if (x<400) dx=1; // move right
+  if (y>600) dy=-1; // move up
+  else if (y<400) dy=1; // move down
+  
   Mouse.move(dx,dy,0); //x, y, scroll => no scroll in this case
   }

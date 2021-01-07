@@ -5,3 +5,6 @@ Thumbstick and encoder used as mouse functions
 
 [Keytest](./keytest)  
 Output buttons, encoder and thumbstick on serial port
+
+[photoshop](./photoshop)
+Commands for Adobe Photoshop
