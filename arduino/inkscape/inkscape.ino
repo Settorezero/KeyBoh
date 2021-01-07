@@ -4,7 +4,7 @@
  * (C)2020 Giovanni Bernardo (Cyb3rn0id), Roberto D'Amico (Bobboteck)
  * https://www.settorezero.com
  *
- * Photoshop shortcuts
+ * Inkscape shortcuts
  * See readme for keyboh configuration
  */
 
@@ -57,7 +57,7 @@ void setup()
   
   // HID peripherals initialization
   Keyboard.begin();
-  //Mouse.begin();
+  Mouse.begin();
   //Consumer.begin(); // used for multimedia buttons
   //Gamepad.begin();
   }
@@ -144,7 +144,6 @@ void encoderTick()
         {
         // zoom in
         zoomfit=true; // reset encoder click behaviour
-        Keyboard.press(CONTROL); // left control (win,nix) or left cmd (mac)
         Keyboard.press(KEYPAD_ADD); // + on numeric keypad
         delay(100);
         Keyboard.releaseAll();      
@@ -162,7 +161,6 @@ void encoderTick()
         {
         // zoom out
         zoomfit=true; // reset encoder click behaviour
-        Keyboard.press(CONTROL); // left control (win,nix) or left cmd (mac)
         Keyboard.press(KEYPAD_SUBTRACT);
         delay(100);
         Keyboard.releaseAll();      
@@ -189,110 +187,106 @@ void do_keypad_stuff(uint8_t pb)
     case 2:
       // Undo
       Keyboard.press(CONTROL); 
-      Keyboard.press(KEY_LEFT_ALT);
       Keyboard.press('z'); 
       break;
 
     case 3:
-      Keyboard.press(KEY_F8); // Show the INFO window
+      // rectangle
+      Keyboard.press('r'); 
       break;
 
     case 4:
-      // resize image
-      Keyboard.press(CONTROL); 
-      Keyboard.press(KEY_LEFT_ALT);
-      Keyboard.press('i'); 
+      // ellipse
+      Keyboard.press('e'); 
       break;
 
     case 5:
-      // change cavas size
-      Keyboard.press(CONTROL); 
-      Keyboard.press(KEY_LEFT_ALT); 
-      Keyboard.press('c'); 
+      // Polygon and stars
+      Keyboard.press(KEYPAD_MULTIPLY); 
       break;
 
     case 6:
-      // Crosshair
-      Keyboard.press(KEY_CAPS_LOCK); 
+      // selector
+      Keyboard.press(KEY_F1); 
       break;
 
     case 7:
-      // Pointer/Move
-      Keyboard.press('v'); 
+      // Node selector
+      Keyboard.press(KEY_F2); 
       break;
 
     case 8:
-      // Switch Between Rapid Selection/Magic Wand
-      Keyboard.press(KEY_LEFT_SHIFT);
-      Keyboard.press('w');
-      break;
-
-    case 9:
-      // Rectangular select
-      Keyboard.press('m');
-      break;
-
-    case 10:
-      // Switch between Lasso types
-      Keyboard.press(KEY_LEFT_SHIFT);
-      Keyboard.press('l');
-      break;
-
-    case 11:
-      // Crop
-      Keyboard.press('c');
-      break;
-
-    case 12:
-      // Eraser
-      Keyboard.press('e');
-      break;
-
-    case 13:
-      // Switch Between Brush/Pencil/Color change/Mix Color
-      Keyboard.press(KEY_LEFT_SHIFT);
+      // Lines
       Keyboard.press('b');
       break;
 
-    case 14:
-      // Horizontal Text
+    case 9:
+      // Handree Lines
+      Keyboard.press('p');
+      break;
+
+    case 10:
+      // Text
       Keyboard.press('t');
       break;
 
+    case 11:
+      // Dropper
+      Keyboard.press('d');
+      break;
+
+    case 12:
+      // Bucket
+      Keyboard.press('u');
+      break;
+
+    case 13:
+      // Eraser
+      Keyboard.press(KEY_LEFT_SHIFT);
+      Keyboard.press('e');
+      break;
+
+    case 14:
+      // Ruler
+      Keyboard.press('m');
+      break;
+
     case 15:
-      //Switch Background and Foreground colors
-      Keyboard.press('x');
+      // empty
+      //Keyboard.press('');
       break;
 
     case 16:
-      // invert image
+      // Resize page
       Keyboard.press(CONTROL); 
-      Keyboard.press('i'); 
+      Keyboard.press(KEY_LEFT_SHIFT); 
+      Keyboard.press('r'); 
       break;
 
     case 17:
-      // Black and White
-      Keyboard.press(CONTROL); 
-      Keyboard.press(KEY_LEFT_ALT); 
+      // Align and distribute
       Keyboard.press(KEY_LEFT_SHIFT); 
-      Keyboard.press('b'); 
+      Keyboard.press(CONTROL); 
+      Keyboard.press('a'); 
       break;
 
     case 18:
-      // Color Balance
+      // Fill and stroke
+      Keyboard.press(KEY_LEFT_SHIFT); 
       Keyboard.press(CONTROL); 
-      Keyboard.press('b'); 
+      Keyboard.press('f'); 
       break;
 
     case 19:
-      // Brush Window
-      Keyboard.press(KEY_F5); 
+      // PNG export
+      Keyboard.press(KEY_LEFT_SHIFT); 
+      Keyboard.press(CONTROL); 
+      Keyboard.press('e'); 
       break;
 
     case 20:
-      // Show/Hide Grid
-      Keyboard.press(CONTROL);
-      Keyboard.press(',');
+      // Toggle windows
+      Keyboard.press(KEY_F12);
       break;
 
     default:
@@ -308,10 +302,9 @@ void do_keypad_stuff(uint8_t pb)
 // click on encoder button
 void do_encoder_button_stuff(void)
   {
-  Keyboard.press(CONTROL); // left control (win,nix) or left cmd (mac)
   if (zoomfit)
     {
-    Keyboard.press('0'); // fit
+    Keyboard.press('5'); // fit
     }
   else
     {
@@ -326,7 +319,8 @@ void do_encoder_button_stuff(void)
 void do_thumbstick_button_stuff(void)
   {
   // toggle fullscreen
-  Keyboard.press('f');
+  Keyboard.press(CONTROL);
+  Keyboard.press('4');
   delay(50);
   Keyboard.releaseAll(); 
   }
@@ -345,33 +339,27 @@ void do_thumbstick_analog_stuff(uint16_t x, uint16_t y)
   else if (y<380) dy=1; // move down
 
   if (dx==-1) // left
-    {    
-    Keyboard.press(CONTROL); // left control (win,nix) or left cmd (mac)
+    {
     Keyboard.press(KEY_LEFT_SHIFT);
-    Keyboard.press(KEY_PAGE_UP);
-    delay(30);
+    Mouse.move(0,0,1); // x,y, scroll up
+    delay(80);
     Keyboard.releaseAll();   
     }
   else if (dx==1) // right
-    {    
-    Keyboard.press(CONTROL); // left control (win,nix) or left cmd (mac)
+    {
     Keyboard.press(KEY_LEFT_SHIFT);
-    Keyboard.press(KEY_PAGE_DOWN);
-    delay(30);
+    Mouse.move(0,0,-1); // x,y, scroll down
+    delay(80);
     Keyboard.releaseAll();   
     }      
  if (dy==-1) // up
     {    
-    Keyboard.press(KEY_LEFT_SHIFT);
-    Keyboard.press(KEY_PAGE_UP);
-    delay(30);
-    Keyboard.releaseAll();   
+    Mouse.move(0,0,1); // x,y, scroll up    
+    delay(80);
     }
   else if (dy==1) // down
     {    
-    Keyboard.press(KEY_LEFT_SHIFT);
-    Keyboard.press(KEY_PAGE_DOWN);
-    delay(30);
-    Keyboard.releaseAll();   
+    Mouse.move(0,0,-1); // x,y, scroll down
+    delay(80);
     }       
    }

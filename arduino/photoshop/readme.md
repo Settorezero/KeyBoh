@@ -1,6 +1,7 @@
-### Photoshop
+### Functions for Adobe Photoshop
 
-You can use this sketch for Photoshop. I've put my favourite commands, you can change the sketch for implementing what you want
+You can use this sketch for controlling Adobe Photoshop.  
+I've put my favourite commands, you can change the sketch for implementing what you want.
 
 #### Configuration
 
