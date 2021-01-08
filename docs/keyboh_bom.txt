@@ -23,9 +23,9 @@ H1				male pinheader 10pin							Arduino header - solder on top
 H2				male pinheader 8pin								Arduino header - solder on top
 H3				male pinheader 8pin 							Arduino header - solder on top
 H4				male pinheader 6pin 							Arduino header - solder on top
-UART			male pinheader right angle 4pin
-I2C				male pinheader right angle 4pin 
-EXT1			male pinheader right angle 3pin
+UART			male pinheader right angle 4pin                 Optional
+I2C				male pinheader right angle 4pin                 Optional
+EXT1			male pinheader right angle 3pin                 Optional
 
 * Those 2 resistors are used only in the case you use an Arduino Compatible board running at 3.3V and the device on UART connector
 works at 5V, in that case two resistors forms a voltage divider that consent to receive a 3.3V signal on RX pin of Arduino.
@@ -34,4 +34,4 @@ also the SJ2, SJ3 and SJ4 solder jumpers or simply don't use the 5V pin if not n
 
 2 - External components
 
-1x	Arduino Leonard original board
+1x	Arduino Leonardo original board
