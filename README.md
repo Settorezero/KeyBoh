@@ -5,8 +5,10 @@
 KeyBoh is an Arduino Leonardo shield for making customizable, cheap, USB keyboards. We love to use the [NicoHood HID Project library](https://github.com/NicoHood/HID) for interfacing the whole thing to a Computer. It's very cheap because uses commonly available 12x12 tactile switches.
 
 ## PCB  
-Making the PCB on PCBWay will support our work. You need to subscribe to PCBWay first using [this invite link](https://www.pcbway.com/setinvite.aspx?inviteid=355653&from=settorezero2020). 
-Once subscribed to PCBWay you can let them make you the PCB [from the shared project page](https://www.pcbway.com/project/shareproject/KeyBoh_Shield.html)
+PCBWay has the project ready to be manufactured and shipped. Making the PCB on PCBWay will support our work!  
+You need to subscribe to PCBWay first using [this invite link](https://www.pcbway.com/setinvite.aspx?inviteid=355653&from=settorezero2020). Then you'll have a bonus of $5 for PCB Manufacturing.   
+Once subscribed to PCBWay you can let them make you the PCB [from the shared project page](https://www.pcbway.com/project/shareproject/KeyBoh_Shield.html).
+[Gerbers](./gerbers) are provided anyway.
 
 ## Enclosure
 In the [STL folder](./stl) are located the two panels you can 3Dprint by yourself. Then you can assemble the Keyboh as showed in the pictures using 4x 24mm F/F  and 4x M/F 6mm hex spacers + 12x M3 6mm screws and 4 3M bolts.
