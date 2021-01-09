@@ -55,8 +55,8 @@ void setup()
   // HID peripherals initialization
   Keyboard.begin();
   Mouse.begin();
-  Consumer.begin(); // used for multimedia buttons
-  Gamepad.begin();
+  //Consumer.begin(); // used for multimedia buttons
+  //Gamepad.begin();
   }
 
 void loop()

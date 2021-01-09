@@ -41,10 +41,6 @@ You can also saw off the PCB part with encoder and joystick: a part of soldering
 ## Warnings!!
 Since keymatrix is implemented __without protection diodes on pushbuttons__, is no safe press more than 1 button on the same row at a time: this bring to a momentary short-circuit since 2 or more columns are connected together. Usually this is not a big problem since the duration of the short is very small due to column scan, but is better not doing this. In the next revision we'll add the protection diodes.
 
-## Improvements
-The encoder software debounce has still some issues, it will be better implement an hardware debounce too. [This webpage](https://www.best-microcontroller-projects.com/rotary-encoder.html) has interesting disquisition about encoder debouncing.
-In the meanwhile you can solder 2 small 10pF ceramic capacitors at place of `R3` and `R4` for improving the encoder response. Those resistor were tought for implementing pull-up in devices that has no the GPIO PullUp feature, on Arduino are not needed since Arduino boards have pullups.
-
 ## Bad Coding leads to problems!
 First of all: Always remember to put a `Keyboard.releaseALL()` or `Keyboard.relese([KEY])` after `Keyboard.press` instructions or the keys will remain pressed forever causing a lot of problems!
 

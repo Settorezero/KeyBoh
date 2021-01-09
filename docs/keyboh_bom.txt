@@ -11,12 +11,12 @@ Part			Value											Notes
 S1 to S20		tactile switch 12mm								Square keycap if you'll 3d print the provided faceplate
 R1				leave empty										10K for devices without integrated pull-up resistors
 R2				leave empty										10K for devices without integrated pull-up resistors
-R3				leave empty										10K for devices without integrated pull-up resistors
-R4				leave empty										10K for devices without integrated pull-up resistors
+R3				* 1nF ceramic capacitor							10K resistor for devices without integrated pull-up resistors
+R4				* 1nF ceramic capacitor							10K resistor for devices without integrated pull-up resistors
 R5				as needed by I2C if you use it					4.7K to 10K depending I2C slave requirements
 R6				as needed by I2C if you use it					4.7K to 10K depending I2C slave requirements
-R7				close or 22K									close if you use original Arduino Leonardo*
-R8				empty or 15K									leave empty if you use original Arduino Leonardo*
+R7				** close or 22K									close if you use original Arduino Leonardo
+R8				** empty or 15K									leave empty if you use original Arduino Leonardo
 ENCODER			rotary encoder
 THUMBSTICK		PS2-like analog thumbstick
 H1				male pinheader 10pin							Arduino header - solder on top
@@ -27,7 +27,9 @@ UART			male pinheader right angle 4pin                 Optional
 I2C				male pinheader right angle 4pin                 Optional
 EXT1			male pinheader right angle 3pin                 Optional
 
-* Those 2 resistors are used only in the case you use an Arduino Compatible board running at 3.3V and the device on UART connector
+* Those 2 placeholders was originally intended for mounting resistors when using keyboh with microcontrollers don't have internal pull-up resistors. With Arduino Leonardo resistors are not needed and you must mount 1nF ceramic capacitors for improving the encoder response. Mounting capacitors and using the provided debounce functions in the examples, the response of the encoder is very good
+
+** Those 2 resistors are used only in the case you use an Arduino Compatible board running at 3.3V and the device on UART connector
 works at 5V, in that case two resistors forms a voltage divider that consent to receive a 3.3V signal on RX pin of Arduino.
 If you use a 3.3V Arduino Leonardo or other device, you must also change the SJ1 solder jumper setting, and eventually disconnect
 also the SJ2, SJ3 and SJ4 solder jumpers or simply don't use the 5V pin if not needed

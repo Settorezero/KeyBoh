@@ -4,12 +4,12 @@
  * (C)2020 Giovanni Bernardo (Cyb3rn0id), Roberto D'Amico (Bobboteck)
  * https://www.settorezero.com
  *
- * keytest
- * - Open a serial terminal @115200
- * - Press buttons, move encoder and thumbstick
+ * Rasptank shortcuts for CyB3rn0id version
+ * See readme for keyboh configuration
  */
-// not used HID library in this example
-// #include "HID-Project.h" // HID-Project library by Nico-Hood
+
+#include "HID-Project.h" // HID-Project library by Nico-Hood
+//#define MAC // uncomment this if you're using a MAC
 
 int row[]={A0,A1,A2,A3};    // matrix keypad - rows 
 int col[]={9,10,11,12,13};  // matrix keypad - columns
@@ -23,6 +23,14 @@ int col[]={9,10,11,12,13};  // matrix keypad - columns
 #define STICK_BTN 4
 #define STICK_X   A5
 #define STICK_Y   A4
+
+#ifdef MAC
+#define CONTROL KEY_LEFT_GUI
+#else
+#define CONTROL KEY_LEFT_CTRL
+#endif
+
+bool zoomfit=true;
 
 void setup()
   {
@@ -48,11 +56,10 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(ENC_A), encoderTick, CHANGE); // Pulse interrupt
   
   // HID peripherals initialization
-  //Keyboard.begin();
+  Keyboard.begin();
   //Mouse.begin();
   //Consumer.begin(); // used for multimedia buttons
   //Gamepad.begin();
-  Serial.begin(115200);
   }
 
 void loop()
@@ -62,7 +69,8 @@ void loop()
   // the number of the button pressed is (column+1)+(row*5)
   
   static uint8_t pressed_button=0; // pressed button on matrix keypad from 1 to 20, 0=no button pressed
-    
+  static long last_T; // used for giving some delay to mouse movement
+  
   // keyboad scan
   for(uint8_t c=0; c<5; c++) // column scan
       {
@@ -71,23 +79,25 @@ void loop()
          {
          if(digitalRead(row[r])==LOW)
             {
-            delay(20); // antibounce
+            delay(10); // antibounce
             if(digitalRead(row[r])==LOW)
               {
               pressed_button=(c+1)+(r*5);
+              do_keypad_stuff(pressed_button);
+              pressed_button=0;
               while(digitalRead(row[r])==LOW); // stay until button released
               }
             }
          } // \row scan
        digitalWrite(col[c], HIGH);
        } // \column scan
-
+  
 	// a button is pressed, recall the associated function
-    if (pressed_button>0) 
-      {
-        do_keypad_stuff(pressed_button);
-        pressed_button=0;
-      }
+  //if (pressed_button>0) 
+  //    {
+      do_keypad_stuff(pressed_button);
+      pressed_button=0;
+  //    }
     
     // check encoder button
     if (digitalRead(ENC_BTN)==LOW)
@@ -115,6 +125,7 @@ void loop()
    int16_t x=analogRead(STICK_X);
    int16_t y=analogRead(STICK_Y);
    do_thumbstick_analog_stuff(x,y);
+   
    } // \loop
 
 // encoder interrupt
@@ -133,7 +144,7 @@ void encoderTick()
       {
       if (m==1) // the movement is still clockwise?
         {
-        Serial.println("Encoder rotated clockwise");     
+        // TO DO: implement a function for encoder clockwise
         }
       c=0;
       m=0;
@@ -146,7 +157,7 @@ void encoderTick()
       {
       if (m==-1)
         {
-        Serial.println("Encoder rotated counter-clockwise");
+        // TO DO: implement a function for encoder counter-clockwise
         }
       c=0;
       m=0;
@@ -156,59 +167,199 @@ void encoderTick()
   }
 
 // do function associated to buttons on keypad
-void do_keypad_stuff(uint8_t pb)
+char do_keypad_stuff(uint8_t pb)
   {
-  Serial.print("Button ");
-  Serial.println(pb);
+  static char prevkey='\0';
+  switch (pb)
+    {
+    case 0: // no button pressed
+      Keyboard.release(prevkey);
+      prevkey='\0';
+      break;
+      
+    case 1: // O - Open hand
+      if (prevkey!='O')
+        {
+        Keyboard.release(prevkey);
+        Keyboard.press('O');
+        prevkey='O';  
+        }
+     break;
+
+    case 2: // P - close hand
+    if (prevkey!='P')
+        {
+        Keyboard.release(prevkey);
+        Keyboard.press('P');
+        prevkey='p';  
+        }
+      break;
+
+    case 3:
+       break;
+
+    case 4:
+      break;
+
+    case 5:
+      break;
+
+    case 6: // K - rotate hand clockwise
+      if (prevkey!='K') 
+        {
+        Keyboard.release(prevkey);
+        Keyboard.press('K');
+        prevkey='K';
+        }
+      break;
+
+    case 7: // L - rotate hand counter-clockwise
+      if (prevkey!='L') 
+        {
+        Keyboard.release(prevkey);
+        Keyboard.press('L'); 
+        }
+      prevkey='L';
+      break;
+
+    case 8:
+     break;
+
+    case 9:
+      break;
+
+    case 10:
+      break;
+
+    case 11: // N - move arm forward
+      if (prevkey!='N') 
+        {
+        Keyboard.release(prevkey);
+        Keyboard.press('N');
+        }
+      prevkey='N';
+      break;
+
+    case 12: // M - move arm backward
+      if (prevkey!='M') 
+        {
+        Keyboard.release(prevkey);
+        Keyboard.press('M');
+        }
+      prevkey='M';
+      break;
+
+    case 13:
+      break;
+
+    case 14:
+      break;
+
+    case 15:
+      break;
+
+    case 16: // R - camera up
+      if (prevkey!='R') 
+        {
+        Keyboard.release(prevkey);
+        Keyboard.press('R');
+        }
+      prevkey='R';
+      break;
+
+    case 17: // F - camera down
+      if (prevkey!='F') 
+        {
+        Keyboard.release(prevkey);
+        Keyboard.press('F');
+        }
+      prevkey='F';
+      break;
+
+    case 18:
+      break;
+
+    case 19:
+      break;
+
+    case 20:
+      break;
+
+    default:
+      break;
+    }
+  return (prevkey);
   }
 
 // click on encoder button
 void do_encoder_button_stuff(void)
   {
-  Serial.println("Encoder Button");  
+  Keyboard.releaseAll();
   }
 
 // click on thumbstick button
 void do_thumbstick_button_stuff(void)
   {
-  Serial.println("Thumbstick button");
+  Keyboard.releaseAll();
   }
 
 // movement of thumbstick axis
 void do_thumbstick_analog_stuff(uint16_t x, uint16_t y)
   {
-  // previous movement
-  static int8_t predx=0;
-  static int8_t predy=0;
-  
-  // actual movement
   int8_t dx=0;
   int8_t dy=0;
-
+  static int8_t predx=0;
+  static int8_t predy=0;
   // we'll use the analog joystick as a digital joystick
   // so I set a deadband and I'll check only the movement direction, not the movement amount
-  if (x>600) dx=-1; // move left 
-  else if (x<400) dx=1; // move right
-  if (y>600) dy=-1; // move up
-  else if (y<400) dy=1; // move down
+  if (x>620) dx=-1; // move left 
+  else if (x<380) dx=1; // move right
+  if (y>620) dy=-1; // move up
+  else if (y<380) dy=1; // move down
 
-  if (dx==-1 && predx!=-1)
-    {
-    Serial.println("Thumbstick left");
+  if (dx==-1) // left
+    {    
+    if (predx!=-1) Keyboard.press('A');
+    predx=-1;
     }
-  else if (dx==1 && predx!=1)
-    {
-    Serial.println("Thumbstick right");  
+  else if (dx==1) // right
+    {    
+    if (predx!=1) Keyboard.press('D');
+    predx=1;
     }
-  predx=dx;
-
-  if (dy==-1 && predy!=-1)
+  else
     {
-    Serial.println("Thumbstick up");
+    if (predx==-1)
+      {
+      Keyboard.release('A');  
+      }
+    else
+      {
+      Keyboard.release('D'); 
+      }
+    predx=0;
     }
-  else if (dy==1 && predy!=1)
+ if (dy==-1) // up
+    {    
+    if (predy!=-1) Keyboard.press('W');
+    predy=-1;
+    }
+  else if (dy==1) // down
+    {    
+    if (predy!=1) Keyboard.press('S');
+    predy=1;
+    }   
+  else
     {
-    Serial.println("Thumbstick down");  
+    if (predy==-1)
+      {
+      Keyboard.release('W');       
+      predy=0;
+      }
+    else
+      {
+      Keyboard.release('S');
+      predy=0;  
+      }
     }
-  predy=dy;
   }

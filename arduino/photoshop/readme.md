@@ -14,7 +14,7 @@ ENCODER
 THUMBSTICK 
 - <kbd>X axis</kbd>: PAN Left/Right (SHIFT CTRL PGUP / SHIFT CTRL PGDN)
 - <kbd>Y axis</kbd>: PAN up/down (SHIFT PGUP/SHIFT PGDN)
-- <kbd>Button: Change screen Mode (toggle fullscreen) (F)
+- <kbd>Button</kbd>: Change screen Mode (toggle fullscreen) (F)
 
 ROW 1
 - <kbd>Button 1</kbd>: Save As (CTRL SHIFT S)
