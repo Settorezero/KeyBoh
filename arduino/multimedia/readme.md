@@ -10,12 +10,15 @@ ENCODER
 - <kbd>Button</kbd>: Mute/No Mute
 
 THUMBSTICK 
-- <kbd>X axis</kbd>: Multimedia Rewind / Multimedia Fast Forward [*]
-- <kbd>Y axis</kbd>: Mouse Scroll Up / Mouse Scroll Down [**]
+- <kbd>X axis</kbd>: Multimedia Rewind / Fast Forward [*]
+- <kbd>Y axis</kbd>: Mouse Scroll Up / Scroll Down [**]
 - <kbd>Button</kbd>:
 
-[*] In VLC Media Player this control is used for setting the reproduction speed, so if you release the thumbstick, speed setting will persist. In Foobar2000 works as expected: releasing the stick will reset to the normal speed.
-[**] In some programs (ex.: VLC Media Player), Mouse Scroll Up/Down is used for Volume Control. On Foobar2000 will scroll between tracks in a playlist.
+[*] In VLC Media Player this control is used for setting the reproduction speed, so if you release the stick, speed setting will persist.  
+In Foobar2000 works as expected: releasing the stick will reset to the normal speed.  
+  
+[**] In some programs (ex.: VLC Media Player), Mouse Scroll Up/Down is used for Volume Control.  
+On Foobar2000 will scroll between tracks in a playlist.
 
 ROW 1
 - <kbd>Button 1</kbd>: Multimedia Play/Pause
@@ -25,8 +28,11 @@ ROW 1
 - <kbd>Button 5</kbd>: Multimedia Record
 
 Note:
-Not all programs uses Record button. In VLC Works. I tried Audacity, but seems Audacity don't use any multimedia button.
-On Youtube only play/pause and stop works. Next/Previous don't work even you're in a playlist. If you press Stop, video don't restarts if you press play on the Keyboh: you must click play on the video: I don't know if it's a problem of the browser or youtube.
+Not all programs uses Record button. In VLC Works.  
+  
+I tried Audacity, but seems Audacity don't use any multimedia button.  
+  
+On Youtube only play/pause and stop works. Next/Previous don't work even you're in a playlist. In Youtube if you press Stop, video don't restarts if you press play on the Keyboh: you must click play on the video: I don't know if it's a problem of the browser or youtube.
 
 ROW 2
 - <kbd>Button 6</kbd>: Consumer Open Browser / Go to Home page
