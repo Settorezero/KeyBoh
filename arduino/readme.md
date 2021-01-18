@@ -16,3 +16,6 @@ Favourite commands for Inkscape.
 
 [Rasptank](./rasptank)  
 Commands for Cyb3rn0id version of Adeept Rasptank control interface.
+
+[Multimedia](./multimedia)  
+Controls for music/video players and Browser
