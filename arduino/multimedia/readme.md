@@ -1,6 +1,9 @@
 ### Example
 
-Multimedia + Browser controls. Tested on Foobar2000, VLC and Youtube
+Multimedia + Browser controls. Tested on Foobar2000, VLC and Youtube.
+Files `.docx` and `.pdf` are for printing stickers to be applied between keycaps and transparent lid.
+You can edit the `.docx` and use it as template for making your own graphics.
+[Icons8](https://github.com/icons8) has a lot of colored icons.
 
 #### Configuration
 
