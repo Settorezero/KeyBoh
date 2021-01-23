@@ -14,18 +14,28 @@
 
 #include "HID-Project.h" // HID-Project library by Nico-Hood
 
+// keypad
 int row[]={A0,A1,A2,A3};    // matrix keypad - rows 
 int col[]={9,10,11,12,13};  // matrix keypad - columns
-
 // encoder
 #define ENC_BTN   6
 #define ENC_A     7
 #define ENC_B     8
-
 // thumbstick
 #define STICK_BTN 4
 #define STICK_X   A5
 #define STICK_Y   A4
+
+// remove comment if you want to invert encoder behaviour
+#define ENCODER_INVERT
+
+// improve encoder readings checking for two consecutive ticks at same level
+// pro: more accurate against bouncing, con: encoder speed slower
+//#define ENCODER_DOUBLECHECK
+
+// milliseconds for encoder check
+// after a good check, will attend those ms for re-check encoder ignoring interrupts
+#define ENCODER_ANTIBOUNCE_MS 30
 
 void setup()
   {
@@ -41,15 +51,13 @@ void setup()
     pinMode(col[i], OUTPUT);
     digitalWrite(col[i], HIGH);
     }
-    
+  // encoder and thumbstick setup  
   pinMode(ENC_A, INPUT_PULLUP);
   pinMode(ENC_B, INPUT_PULLUP);
   pinMode(ENC_BTN, INPUT_PULLUP);
   pinMode(STICK_BTN, INPUT_PULLUP);
-  
   // encoder interrupt
   attachInterrupt(digitalPinToInterrupt(ENC_A), encoderTick, CHANGE); // Pulse interrupt
-  
   // HID peripherals initialization
   Keyboard.begin();
   Mouse.begin();
@@ -62,11 +70,9 @@ void loop()
   // check pressed button on the 5x4 matrix
   // buttons are numbered from 1 to 20 as on the PCB
   // the number of the button pressed is (column+1)+(row*5)
-  
   static uint8_t pressed_button=0; // pressed button on matrix keypad from 1 to 20, 0=no button pressed
   static long last_T; // used for giving some delay to mouse movement
-  
-  // keyboad scan
+  // keyboard scan
   for(uint8_t c=0; c<5; c++) // column scan
       {
       digitalWrite(col[c], LOW);
@@ -85,7 +91,7 @@ void loop()
        digitalWrite(col[c], HIGH);
        } // \column scan
 
-	// a button is pressed, recall the associated function
+	  // a button is pressed, recall the associated function
     if (pressed_button>0) 
       {
         do_keypad_stuff(pressed_button);
@@ -131,38 +137,72 @@ void encoderTick()
   static int8_t m=0; // movement: 0=no movement, 1=clockwise, -1=counter-clockwise
   static int8_t c=0; // the tick will be checked two consecutive times, this will count the consecutive times
   if (t>millis()) t=millis(); // millis() rollover
-  if (millis()-t<30) return; // to few time passed, maybe is a bounce
+  if (millis()-t<ENCODER_ANTIBOUNCE_MS) return; // to few time passed, maybe is a bounce
   c++; // a tick has occurred
   if (digitalRead(ENC_A)==digitalRead(ENC_B)) 
     {
-    if (c==1) m=1; // first tick with clockwise movement
-    if (c==2) // second tick
-      {
-      if (m==1) // the movement is still clockwise?
+    #ifdef ENCODER_DOUBLECHECK
+    
+      if (c==1) m=1; // first tick with clockwise movement
+      if (c==2) // second tick
         {
-        Consumer.write(MEDIA_VOLUME_UP); 
+        if (m==1) // the movement is still clockwise?
+          {
+          #ifdef ENCODER_INVERT
+            do_encoder_counterclockwise_stuff();
+          #else
+            do_encoder_clockwise_stuff();
+          #endif
+          }
+        c=0;
+        m=0;
         }
-      c=0;
-      m=0;
-      }
+    
+    #else
+        
+        #ifdef ENCODER_INVERT
+          do_encoder_counterclockwise_stuff();
+        #else
+          do_encoder_clockwise_stuff();
+        #endif
+        c=0;
+    #endif
     }
   else // movement is counter-clockwise
     {
-    if (c==1) m=-1;
-    if (c==2)
-      {
-      if (m==-1)
+    #ifdef ENCODER_DOUBLECKECK
+      
+      if (c==1) m=-1;
+      if (c==2)
         {
-        Consumer.write(MEDIA_VOLUME_DOWN);        
+        if (m==-1)
+          {
+          #ifdef ENCODER_INVERT
+            do_encoder_clockwise_stuff();
+          #else
+            do_encoder_counterclockwise_stuff();
+          #endif     
+          }
+        c=0;
+        m=0;
         }
-      c=0;
-      m=0;
-      }
+    #else
+      
+        #ifdef ENCODER_INVERT
+          do_encoder_clockwise_stuff();
+        #else
+            do_encoder_counterclockwise_stuff();
+        #endif     
+        c=0;
+        
+    #endif
     }
   t=millis(); // last time we checked
   }
 
-// do function associated to buttons on keypad
+//********************************************************************************************************************
+// Keypad functions
+//******************************************************************************************************************** 
 void do_keypad_stuff(uint8_t pb)
   {
   switch (pb)
@@ -246,19 +286,38 @@ void do_keypad_stuff(uint8_t pb)
   return;
   }
 
-// click on encoder button
+//******************************************************************************************************************** 
+// ENCODER MOVEMENT
+//******************************************************************************************************************** 
+void do_encoder_clockwise_stuff(void)
+  {
+  Consumer.write(MEDIA_VOLUME_UP);
+  }
+
+void do_encoder_counterclockwise_stuff(void)
+  {
+  Consumer.write(MEDIA_VOLUME_DOWN);  
+  }
+
+//******************************************************************************************************************** 
+// ENCODER BUTTON
+//******************************************************************************************************************** 
 void do_encoder_button_stuff(void)
   {
   Consumer.write(MEDIA_VOL_MUTE);
   }
 
-// click on thumbstick button
+//******************************************************************************************************************** 
+// THUMBSTICK BUTTON
+//******************************************************************************************************************** 
 void do_thumbstick_button_stuff(void)
   {
   
   }
 
-// movement of thumbstick axis
+//******************************************************************************************************************** 
+// THUMBSTICK MOVEMENT
+//******************************************************************************************************************** 
 void do_thumbstick_analog_stuff(uint16_t x, uint16_t y)
   {
   int8_t dx=0;
@@ -289,3 +348,5 @@ void do_thumbstick_analog_stuff(uint16_t x, uint16_t y)
     Mouse.move(0,0,1);
     }
   }
+
+// END OF FILE
