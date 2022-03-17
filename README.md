@@ -58,6 +58,9 @@ Another problem can be _board not recognized_ from Arduino IDE even if the board
 
 ## Links
 - [more pictures of KeyBoh](https://photos.app.goo.gl/CL2jDvoLArWxuAqx8)
+- [video example: usage on Photoshop](https://www.instagram.com/tv/CJuXJ9UKTim/)
+- [video example: usage with commercial robot](https://www.instagram.com/p/CJzhHA2K29V/)
+
 
 ## Sharings
 Since we love when others share our projects, here are linked pages who shared the project.  
